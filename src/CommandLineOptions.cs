@@ -24,7 +24,7 @@ namespace DotNetProver
 
             app.HelpOption("-?|-h|--help");
 
-            var optProjects = app.Option("-p|--projects <PROJECTS>", "Project(s) to get version(s) for", CommandOptionType.MultipleValue);
+            var optProjects = app.Option("-p|--projects <PROJECTS>", "Project(s) to get version(s) for (default: current directory)", CommandOptionType.MultipleValue);
             var versionsOnly = app.Option("-v|--versions-only", "Only print the version(s) for projects",
                 CommandOptionType.NoValue);
 
