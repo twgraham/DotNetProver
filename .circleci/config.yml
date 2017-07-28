@@ -1,0 +1,39 @@
+version: 2.0
+
+references:
+  
+  container_config: &container_config
+    docker:
+      - image: microsoft/dotnet:1.1-sdk
+    working_directory: /root/DotNetProver
+
+  workspace_root: &workspace_root
+    /tmp/workspace
+
+jobs:
+  build:
+    <<: *container_config
+    steps:
+      - checkout
+      - restore_cache:
+          key: DotNetProver-{{ .Branch }}
+      - run: 
+          name: Install dependencies
+          command: dotnet restore
+      - save_cache:
+          key: DotNetProver-{{ .Branch }}
+          paths:
+            - /root/.nuget/packages
+      - run:
+          name: Publish package
+          command: dotnet publish -c Release src/
+      
+      - run:
+          name: Publish to Nuget
+          branches:
+            only:
+              - master
+          command: |
+                cd src/
+                dotnet pack -c Release
+                dotnet nuget push bin/Release/*.nupkg -s https://www.nuget.org/api/v2/package -k $NUGET_API_KEY
