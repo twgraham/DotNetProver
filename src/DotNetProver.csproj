@@ -7,6 +7,10 @@
     <PackageVersion>0.1.0</PackageVersion>
     <Authors>Taylor Graham</Authors>
     <Description>A simple dotnet cli tool integration for getting project package version</Description>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/twgraham/DotNetProver</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/twgraham/DotNetProver</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <PackageType>DotnetCliTool</PackageType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
